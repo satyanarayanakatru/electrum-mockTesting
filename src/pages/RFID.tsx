@@ -3,23 +3,20 @@ import { Box, TextField, Button, Typography } from "@mui/material";
 import DynamicTable, { type Column } from "../components/DynamicTable";
 
 interface RFIDEntry {
-  status: string;
   rfid: string;
   charger: string;
   user: string;
 }
 
 const RFID = () => {
-  const [status, setStatus] = useState("");
   const [rfid, setRfid] = useState("");
   const [charger, setCharger] = useState("");
   const [user, setUser] = useState("");
   const [entries, setEntries] = useState<RFIDEntry[]>([]);
 
   const handleAdd = () => {
-    if (status && rfid && charger && user) {
-      setEntries([...entries, { status, rfid, charger, user }]);
-      setStatus("");
+    if (rfid && charger && user) {
+      setEntries([...entries, { rfid, charger, user }]);
       setRfid("");
       setCharger("");
       setUser("");
@@ -32,14 +29,14 @@ const RFID = () => {
 
   const columns: Column[] = [
     { field: "rfid", headerName: "RFID" },
-    { field: "chargerAssigned", headerName: "Charger Assigned" },
-    { field: "creditLoaded", headerName: "Credit Loaded" },
+    { field: "charger", headerName: "Charger Assigned" },
+    { field: "user", headerName: "User" },
   ];
 
   return (
     <Box>
       <Typography variant="h4" mb={2}>
-        RFID{" "}
+        RFID
       </Typography>
       <Box sx={{ display: "flex", gap: 2, mb: 3 }}>
         <TextField
@@ -58,7 +55,7 @@ const RFID = () => {
           onChange={(e) => setUser(e.target.value)}
         />
         <Button variant="contained" onClick={handleAdd}>
-          Add
+          Add RFID
         </Button>
       </Box>
       <DynamicTable columns={columns} rows={entries} onDelete={handleDelete} />

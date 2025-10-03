@@ -64,7 +64,7 @@ const Members = () => {
           onChange={(e) => setCreditLoaded(e.target.value)}
         />
         <Button variant="contained" color="primary" onClick={handleAddMember}>
-          Add
+          Add Member
         </Button>
       </Box>
       <DynamicTable columns={columns} rows={members} onDelete={handleDelete} />
